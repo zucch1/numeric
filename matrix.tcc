@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <iomanip>
-#include <regex>
+#include <type_traits>
 
 template <typename T>
 // TODO: Prevent a T** from being assigned to Matrix2D(unsafe)
@@ -349,6 +349,15 @@ void Matrix2D<T>::row_operation(unsigned i, unary_operator_fn<T> fn){
     if(i >= M) throw std::out_of_range("row_multiply::row index out of range");
     for(unsigned j = 0; j < N; j++){
         set(i, j, fn(get(i, j)));
+    }
+}
+
+//! Incomplete behaviour
+template <typename T>
+void Matrix2D<T>::row_operation(unsigned i, unsigned j, binary_operator_fn<T> fn){
+    if(i >= M || j >= N) throw std::out_of_range("row_operation::row index out of range");
+    for(unsigned k = 0; j < N; j++){
+        set(i, j, fn(get(i, k), get(j, k)));
     }
 }
 

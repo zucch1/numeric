@@ -29,10 +29,11 @@ public:
 
     void set(unsigned i, unsigned j, T elem);
     T get(unsigned i, unsigned j) const;
-    int det();
+    int det() const;
     void fill(T elem);
     Matrix2D<T> submatrix(unsigned i, unsigned j, unsigned m, unsigned n) const;
     Matrix2D<T> transpose();
+    Matrix2D<T> inverse() const;
     void row_swap(unsigned i, unsigned j);
     void row_multiply(unsigned i, T);
     void row_divide(unsigned i, T);
@@ -54,6 +55,8 @@ public:
     void subtract_rows(unsigned i, unsigned j);
     void add_columns(unsigned i, unsigned j);
     void subtract_columns(unsigned i, unsigned j);
+    template <typename U>
+    operator Matrix2D<U>() const;
 //! End
 
     bool operator==(const Matrix2D<T>&) const;       // Matrices are equal if their elements are equal
@@ -76,10 +79,13 @@ public:
     static Matrix2D<T> I(unsigned short I);
     void display() const;
     inline unsigned m(){ return M;}
-    inline unsigned n(){ return n;}
+    inline unsigned n(){ return N;}
 
     template <typename U, typename P>
     friend Matrix2D<U> operator*(Matrix2D<U>& other, P n);
     template <typename U, typename P>
     friend Matrix2D<U> operator*(P n, Matrix2D<U>& other);
 };
+
+template <typename T>
+void GaussJordan(Matrix2D<T>& A, Matrix2D<T>& b);
