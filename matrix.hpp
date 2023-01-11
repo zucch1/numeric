@@ -20,6 +20,7 @@ private:
     unsigned M;         
     unsigned N;
 public:
+    Matrix2D() = delete;
     Matrix2D(std::initializer_list<std::initializer_list<T>> list);
     Matrix2D(const unsigned M, const unsigned N);
     Matrix2D(const Matrix2D<T>&);
