@@ -288,8 +288,8 @@ T* Matrix2D<T>::operator[](unsigned i) const{
 
 //! UNSAFE!! Use with caution!
 template <typename T>
-T** Matrix2D<T>::operator()() const{
-    return data.get();
+T Matrix2D<T>::operator()(unsigned i, unsigned j) const{
+    return get(i, j);
 }
 
 // Returns an NxN identity matrix of type T
@@ -353,13 +353,13 @@ void Matrix2D<T>::row_operation(unsigned i, unary_operator_fn<T> fn){
 }
 
 //! Incomplete behaviour
-template <typename T>
-void Matrix2D<T>::row_operation(unsigned i, unsigned j, binary_operator_fn<T> fn){
-    if(i >= M || j >= N) throw std::out_of_range("row_operation::row index out of range");
-    for(unsigned k = 0; j < N; j++){
-        set(i, j, fn(get(i, k), get(j, k)));
-    }
-}
+// template <typename T>
+// void Matrix2D<T>::row_operation(unsigned i, unsigned j, binary_operator_fn<T> fn){
+//     if(i >= M || j >= N) throw std::out_of_range("row_operation::row index out of range");
+//     for(unsigned k = 0; j < N; j++){
+//         set(i, j, fn(get(i, k), get(j, k)));
+//     }
+// }
 
 
 template <typename T>

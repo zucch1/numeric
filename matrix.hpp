@@ -73,8 +73,7 @@ public:
     Matrix2D<T> operator*(const Matrix2D<T>&) const;
     Matrix2D<T> operator/(const Matrix2D<T>&) const;
     T* operator[](unsigned i) const;
-    T** operator()() const;
-    operator const T**() const;
+    T operator()(unsigned i, unsigned j) const;
     virtual ~Matrix2D() = default;
     static Matrix2D<T> I(unsigned short I);
     void display() const;
