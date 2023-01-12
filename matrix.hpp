@@ -87,4 +87,4 @@ public:
 };
 
 template <typename T>
-void GaussJordan(Matrix2D<T>& A, Matrix2D<T>& b);
+void gaussjordan(Matrix2D<T>& A, Matrix2D<T>& b);
